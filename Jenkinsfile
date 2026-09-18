@@ -4,6 +4,7 @@ pipeline {
     environment {
         IMAGE_NAME = 'student-management:latest'
         CONTAINER_NAME = 'student-management-container'
+        MAVEN_HOME = 'C:\\Apache\\maven'
     }
 
     stages {
@@ -16,7 +17,7 @@ pipeline {
 
         stage('Maven Build and Test') {
             steps {
-                bat 'mvn clean test package'
+                bat '"C:\\Apache\\maven\\bin\\mvn.cmd" clean test package'
             }
         }
 
