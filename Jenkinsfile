@@ -30,7 +30,7 @@ pipeline {
         stage('Deploy Container') {
             steps {
                 bat 'docker rm -f %CONTAINER_NAME% 2>NUL || exit /b 0'
-                bat 'docker run -d --name %CONTAINER_NAME% -p 8082:8080 %IMAGE_NAME%'
+                bat 'docker run -d --name %CONTAINER_NAME% -p 8083:8080 %IMAGE_NAME%'
             }
         }
 
