@@ -1,9 +1,10 @@
+
 pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = 'student-management:latest'
-        CONTAINER_NAME = 'student-management-container'
+        IMAGE_NAME = 'carpool-matcher:latest'
+        CONTAINER_NAME = 'carpool-matcher-container'
         MAVEN_HOME = 'C:\\Apache\\maven'
     }
 
@@ -18,6 +19,12 @@ pipeline {
         stage('Maven Build and Test') {
             steps {
                 bat '"C:\\Apache\\maven\\bin\\mvn.cmd" clean test package'
+            }
+        }
+
+        stage('Verify Frontend in Build') {
+            steps {
+                bat 'dir target\\classes\\static'
             }
         }
 
@@ -43,7 +50,7 @@ pipeline {
 
     post {
         success {
-            echo 'CI/CD Pipeline completed successfully!'
+            echo 'Campus Carpool Matcher CI/CD Pipeline completed successfully!'
         }
 
         failure {
